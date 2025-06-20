@@ -1338,7 +1338,24 @@ for variant_path in variant_paths:
 
     env.Append(CCFLAGS='$CCFLAGS_EXTRA')
     env.Append(LINKFLAGS='$LDFLAGS_EXTRA')
-
+    env.Append(CCFLAGS=['-Wno-type-limits'])  # 添加到现有的 CCFLAGS
+    env.Append(CCFLAGS = ['-Wno-error=free-nonheap-object', '-Wno-free-nonheap-object', '-Wno-nonnull-compare'])
+    env.Append(CCFLAGS=[
+    '-Wno-error=parentheses',     # 关闭括号警告错误
+    '-Wno-error=array-bounds',    # 关闭数组边界警告错误
+    '-Wno-misleading-indentation' # 关闭误导性缩进警告
+    ])
+    # 在SConstruct文件中添加以下编译选项
+    env.Append(CCFLAGS=[
+        '-Wno-array-bounds',           # 忽略数组边界警告
+        '-Wno-deprecated-declarations', # 忽略废弃函数警告
+        '-fno-var-tracking-assignments' # 关闭变量跟踪赋值
+    ])
+    # 同时建议添加优化选项
+    env.Append(CCFLAGS=[
+        '-O2',                         # 优化等级
+        '-fPIC'                        # 生成位置无关代码
+    ])
     # The src/SConscript file sets up the build rules in 'env' according
     # to the configured variables.  It returns a list of environments,
     # one for each variant build (debug, opt, etc.)

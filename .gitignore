@@ -1,4 +1,6 @@
 build
+m5
+python2_dev
 parser.out
 parsetab.py
 cscope.files

@@ -62,7 +62,7 @@ class SysConfig:
         elif buildEnv['TARGET_ISA'] == 'x86':
             return [env.get('LINUX_IMAGE', disk('x86root.img'))]
         elif buildEnv['TARGET_ISA'] == 'arm':
-            return [env.get('LINUX_IMAGE', disk('linux-aarch32-ael.img'))]
+            return [env.get('LINUX_IMAGE', disk('linaro-aarch64-linux.img'))] # linux-aarch32-ael.img
         elif buildEnv['TARGET_ISA'] == 'sparc':
             return [env.get('LINUX_IMAGE', disk('disk.s10hw2'))]
         else:

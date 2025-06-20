@@ -65,8 +65,15 @@
 
 using namespace std;
 
+// 在文件开头添加
+#ifndef FATAL_STACK_SIZE
+// 使用原始的SIGSTKSZ大小的2倍
+#define FATAL_STACK_SIZE (2 * 8192) // 8192是大多数系统上SIGSTKSZ的典型值
+#endif
+
 // Use an separate stack for fatal signal handlers
-static uint8_t fatalSigStack[2 * SIGSTKSZ];
+// static uint8_t fatalSigStack[2 * SIGSTKSZ];
+static uint8_t fatalSigStack[FATAL_STACK_SIZE] __attribute__((aligned(16)));
 
 static bool
 setupAltStack()

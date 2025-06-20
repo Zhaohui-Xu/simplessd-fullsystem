@@ -92,7 +92,6 @@ class RefCounted
      * do.  We don't ever delete a "void *".
      */
     virtual ~RefCounted() {}
-
     /// Increment the reference count
     void incref() const { ++count; }
 
